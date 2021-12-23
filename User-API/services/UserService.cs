@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using User_API.DTO;
 using User_API.entities;
+using User_API.InputModel;
 using User_API.repositories;
+using User_API.services.auth;
 
 namespace User_API.services
 {
@@ -38,9 +40,39 @@ namespace User_API.services
             user.Age = dto.Age;
             user.Email = dto.Email;
             user.Username = dto.Username;
-            user.Password = dto.Password;
+            user.Password = PasswordHasher.Hash(dto.Password);
 
             ur.Insert(user);
+        }
+
+        public void DeleteById(int id)
+        {
+            if (Exists(id))
+            {
+                ur.DeleteById(id);
+            }
+        }
+
+        public void Update(int id, UserInputModel u)
+        {
+            if (Exists(id))
+            {
+                var user = User.Convert(u);
+                ur.Update(id, user);
+            }
+            
+        }
+
+        public bool Exists(int id)
+        {
+            if (ur.GetById(id) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

@@ -11,8 +11,9 @@ namespace User_API.repositories
         public List<T> GetAll();
         public void Insert(T t);
 
+        public void DeleteById(int id);
+
         public void Update(int id, T t);
-        
        
     }
 }

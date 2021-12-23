@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using User_API.DTO;
 using User_API.entities;
 using User_API.InputModel;
@@ -31,5 +33,22 @@ namespace User_API.Controllers
         {
             us.Insert(UserDTO.Convert(u));
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteById([FromRoute] int id)
+        {
+            us.DeleteById(id);
+            return Ok();
+
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Update([FromRoute] int id, [FromBody] UserInputModel u)
+        {
+            us.Update(id, u);
+            return Ok();
+        }
     }
+
+
 }

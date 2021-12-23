@@ -12,14 +12,17 @@ namespace User_API.repositories
         private readonly Database db = new Database
         ("Data Source=Machine;Initial Catalog=userdb;User ID=Reykon;Password=GR@217748;Pooling=False");
 
+
         public List<User> GetAll()
         {
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
 
-                    cmd.CommandText = "SELECT * FROM Users";
+            using (SqlCommand cmd = new SqlCommand())
+            {
+
+                cmd.CommandText = "SELECT * FROM Users";
+
+                try
+                {
                     cmd.Connection = db.GetConnection();
                     db.Connect();
 
@@ -49,25 +52,28 @@ namespace User_API.repositories
                     }
 
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                finally
+                {
+                    db.Disconnect();
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            finally
-            {
-                db.Disconnect();
-            }
+
             return null;
         }
 
         public User GetById(int id)
         {
-            try
+
+            using (SqlCommand cmd = new SqlCommand())
             {
-                using (SqlCommand cmd = new SqlCommand())
+                cmd.CommandText = "SELECT * FROM Users WHERE id = @id";
+
+                try
                 {
-                    cmd.CommandText = "SELECT * FROM Users WHERE id = @id";
                     cmd.Connection = db.GetConnection();
                     cmd.Parameters.AddWithValue("@id", id);
                     db.Connect();
@@ -91,14 +97,14 @@ namespace User_API.repositories
 
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            finally
-            {
-                db.Disconnect();
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                finally
+                {
+                    db.Disconnect();
+                }
             }
 
             return null;
@@ -111,17 +117,19 @@ namespace User_API.repositories
             {
                 cmd.CommandText = "INSERT INTO Users (first_name, last_name, age, email, user_name, password)" +
                                   "VALUES (@first_name, @last_name, @age, @email, @user_name, @password)";
-                cmd.Connection = db.GetConnection();
-
-                cmd.Parameters.AddWithValue("@first_name", u.FirstName);
-                cmd.Parameters.AddWithValue("@last_name", u.LastName);
-                cmd.Parameters.AddWithValue("@age", u.Age);
-                cmd.Parameters.AddWithValue("@email", u.Email);
-                cmd.Parameters.AddWithValue("@user_name", u.Username);
-                cmd.Parameters.AddWithValue("@password", u.Password);
 
                 try
                 {
+                    cmd.Connection = db.GetConnection();
+
+                    cmd.Parameters.AddWithValue("@first_name", u.FirstName);
+                    cmd.Parameters.AddWithValue("@last_name", u.LastName);
+                    cmd.Parameters.AddWithValue("@age", u.Age);
+                    cmd.Parameters.AddWithValue("@email", u.Email);
+                    cmd.Parameters.AddWithValue("@user_name", u.Username);
+                    cmd.Parameters.AddWithValue("@password", u.Password);
+
+
                     db.Connect();
                     cmd.ExecuteNonQuery();
                 }
@@ -137,9 +145,68 @@ namespace User_API.repositories
         }
 
 
-        public void Update(int id, User t)
+
+
+        public void DeleteById(int id)
         {
-            throw new System.NotImplementedException();
+            using (var cmd = new SqlCommand())
+            {
+                cmd.CommandText = "DELETE FROM Users WHERE id = @id";
+
+                try
+                {
+                    cmd.Connection = db.GetConnection();
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    db.Connect();
+                    cmd.ExecuteNonQuery();
+
+                }catch (Exception e)
+                {
+
+                }
+                finally
+                {
+                    db.Disconnect();
+                }
+
+            }
+
         }
+
+        public void Update(int id, User u)
+        {
+            using (var cmd = new SqlCommand())
+            {
+                cmd.CommandText = "SELECT * FROM Users WHERE id = @id";
+
+                try
+                {
+                    cmd.Connection = db.GetConnection();
+
+                    cmd.Parameters.AddWithValue("@first_name", u.FirstName);
+                    cmd.Parameters.AddWithValue("@last_name", u.LastName);
+                    cmd.Parameters.AddWithValue("@age", u.Age);
+                    cmd.Parameters.AddWithValue("@email", u.Email);
+                    cmd.Parameters.AddWithValue("@user_name", u.Username);
+                    cmd.Parameters.AddWithValue("@password", u.Password);
+
+
+                    db.Connect();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                finally
+                {
+                    db.Disconnect();
+                }
+
+            }
+        }
+
+
     }
 }
