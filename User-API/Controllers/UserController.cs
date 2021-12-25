@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using User_API.DTO;
-using User_API.entities;
 using User_API.InputModel;
 using User_API.services;
 
@@ -17,15 +14,15 @@ namespace User_API.Controllers
         private readonly UserService us = new UserService();
 
         [HttpGet]
-        public List<UserDTO> GetAll()
+        public ActionResult<List<UserDTO>> GetAll()
         {
-            return us.GetAll();
+            return Ok(us.GetAll());
         }
 
         [HttpGet("{id:int}")]
-        public UserDTO GetById([FromRoute] int id)
+        public ActionResult<UserDTO> GetById([FromRoute] int id)
         {
-            return us.GetById(id);
+            return Ok(us.GetById(id));
         }
 
         [HttpPost]
@@ -35,18 +32,16 @@ namespace User_API.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        public async Task<ActionResult> DeleteById([FromRoute] int id)
+        public void DeleteById([FromRoute] int id)
         {
             us.DeleteById(id);
-            return Ok();
-
         }
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult> Update([FromRoute] int id, [FromBody] UserInputModel u)
+        public void Update([FromRoute] int id, [FromBody] UserInputModel u)
         {
             us.Update(id, u);
-            return Ok();
+
         }
     }
 

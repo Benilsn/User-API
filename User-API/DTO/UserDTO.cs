@@ -1,5 +1,4 @@
-﻿using System;
-using User_API.entities;
+﻿using User_API.entities;
 using User_API.InputModel;
 
 namespace User_API.DTO

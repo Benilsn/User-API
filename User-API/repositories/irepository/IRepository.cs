@@ -13,7 +13,7 @@ namespace User_API.repositories
 
         public void DeleteById(int id);
 
-        public void Update(int id, T t);
-       
+        public void Update(T t);
+
     }
 }

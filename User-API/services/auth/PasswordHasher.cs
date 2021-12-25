@@ -6,7 +6,7 @@ namespace User_API.services.auth
 {
     public class PasswordHasher
     {
-        
+
         internal protected static string Hash(string password)
         {
 

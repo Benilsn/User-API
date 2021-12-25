@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using User_API.DTO;
 using User_API.entities;
+using User_API.Exceptions;
 using User_API.InputModel;
 using User_API.repositories;
 using User_API.services.auth;
@@ -27,9 +28,17 @@ namespace User_API.services
 
         public UserDTO GetById(int id)
         {
-            var dto = UserDTO.Convert(ur.GetById(id));
+            if (Exists(id))
+            {
+                var dto = UserDTO.Convert(ur.GetById(id));
 
-            return dto;
+                return dto;
+            }
+            else
+            {
+                throw new UserNotRegisteredException();
+            }
+
         }
 
         public void Insert(UserDTO dto)
@@ -51,16 +60,33 @@ namespace User_API.services
             {
                 ur.DeleteById(id);
             }
+            else
+            {
+                throw new UserNotRegisteredException();
+            }
         }
 
         public void Update(int id, UserInputModel u)
         {
             if (Exists(id))
             {
-                var user = User.Convert(u);
-                ur.Update(id, user);
+                var user = new User();
+
+                user.Id = id;
+                user.FirstName = u.FirstName;
+                user.LastName = u.LastName;
+                user.Age = u.Age;
+                user.Email = u.Email;
+                user.Username = u.Username;
+                user.Password = PasswordHasher.Hash(u.Password);
+
+                ur.Update(user);
             }
-            
+            else
+            {
+                throw new UserNotRegisteredException();
+            }
+
         }
 
         public bool Exists(int id)

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 
 namespace User_API.database
@@ -28,7 +25,7 @@ namespace User_API.database
                 con.Open();
 
             }
-            catch(SqlException e)
+            catch (SqlException e)
             {
                 Console.WriteLine(e.Message);
             }

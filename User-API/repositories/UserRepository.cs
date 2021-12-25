@@ -161,7 +161,8 @@ namespace User_API.repositories
                     db.Connect();
                     cmd.ExecuteNonQuery();
 
-                }catch (Exception e)
+                }
+                catch (Exception e)
                 {
 
                 }
@@ -169,21 +170,23 @@ namespace User_API.repositories
                 {
                     db.Disconnect();
                 }
-
             }
-
         }
 
-        public void Update(int id, User u)
+        public void Update(User u)
         {
             using (var cmd = new SqlCommand())
             {
-                cmd.CommandText = "SELECT * FROM Users WHERE id = @id";
+                cmd.CommandText =
+                "UPDATE Users " +
+                "SET first_name = @first_name, last_name = @last_name, age = @age, email = @email, user_name = @user_name, password = @password " +
+                "WHERE id = @id";
 
                 try
                 {
                     cmd.Connection = db.GetConnection();
 
+                    cmd.Parameters.AddWithValue("@id", u.Id);
                     cmd.Parameters.AddWithValue("@first_name", u.FirstName);
                     cmd.Parameters.AddWithValue("@last_name", u.LastName);
                     cmd.Parameters.AddWithValue("@age", u.Age);
@@ -203,10 +206,7 @@ namespace User_API.repositories
                 {
                     db.Disconnect();
                 }
-
             }
         }
-
-
     }
 }
