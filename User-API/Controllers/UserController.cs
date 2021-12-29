@@ -21,7 +21,7 @@ namespace User_API.Controllers
 
         [HttpGet("{id:int}")]
         public ActionResult<UserDTO> GetById([FromRoute] int id)
-        {
+        { 
             return Ok(us.GetById(id));
         }
 
@@ -29,6 +29,15 @@ namespace User_API.Controllers
         public void Insert([FromBody] UserInputModel u)
         {
             us.Insert(UserDTO.Convert(u));
+        }
+
+        [HttpPost]
+        [Route("/register")]
+        public ActionResult InsertFromForm([FromForm] UserInputModel u)
+        {
+            us.Insert(UserDTO.Convert(u));
+            return Redirect("/login");
+
         }
 
         [HttpDelete("{id:int}")]
@@ -43,6 +52,8 @@ namespace User_API.Controllers
             us.Update(id, u);
 
         }
+
+        
     }
 
 

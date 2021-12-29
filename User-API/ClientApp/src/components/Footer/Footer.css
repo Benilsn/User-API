@@ -1,0 +1,20 @@
+div.footer {
+    background-color: rgb(152, 197, 197);
+    width: 80rem;
+}
+
+.footer {
+    position: absolute;
+    transform: translate(0rem,40rem);
+}
+
+.footer h5 {
+    color: blue;
+    position: relative ;
+}
+
+.footer h5 a {
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+}
+

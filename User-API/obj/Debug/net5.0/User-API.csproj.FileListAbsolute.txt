@@ -68,3 +68,10 @@ C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\Us
 C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\obj\Debug\net5.0\ref\User-API.dll
 C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\obj\Debug\net5.0\User-API.pdb
 C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\obj\Debug\net5.0\User-API.genruntimeconfig.cache
+C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\bin\Debug\net5.0\ClientApp\package-lock.json
+C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\bin\Debug\net5.0\ClientApp\package.json
+C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\bin\Debug\net5.0\ClientApp\public\manifest.json
+C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\bin\Debug\net5.0\Microsoft.AspNetCore.NodeServices.dll
+C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\bin\Debug\net5.0\Microsoft.AspNetCore.SpaServices.dll
+C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\bin\Debug\net5.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
+C:\Users\MICRO\OneDrive\Área de Trabalho\Visual Studio Workspace\C#\User-API\User-API\bin\Debug\net5.0\Newtonsoft.Json.dll

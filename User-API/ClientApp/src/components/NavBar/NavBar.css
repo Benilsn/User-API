@@ -1,0 +1,50 @@
+nav.menu {
+    position: absolute;
+    width: 80rem;
+    height: fit-content;
+    background-color: rgb(65, 62, 88);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.menu li {
+    float: left;
+    list-style: none;
+    letter-spacing: 0.2rem;
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-inline: 1.5rem;
+    position: relative;
+}
+
+.menu li ul {
+    padding-top: 0.8rem;
+    position: absolute;
+    display: none;
+}
+
+.menu a {
+    color: rgb(113, 188, 201);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.menu li a:hover {
+    background-color: rgb(151, 166, 173);
+    color: white;
+    -moz-box-shadow: 0 3px 10px 0 rgb(91, 102, 136);
+    -webkit-box-shadow: 0 3px 10px 0 #ccc;
+    text-shadow: 0px 0px 5px #fff;
+}
+
+.menu li:hover ul,
+.menu li.over ul {
+    display: block;
+}
+
+.menu li ul li {
+    background-color: black;
+    border: 1px solid #c0c0c0;
+    display: block;
+    width: 6rem;
+    z-index: 1;
+}

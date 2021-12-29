@@ -1,0 +1,23 @@
+.table-div{
+    position: relative;
+    display: flex;
+    top: 5rem;
+    left: 2rem;
+    align-items: center;
+    align-content: center;
+}
+
+.table-div table, th {
+    table-layout: auto;
+    border: 2px solid black; 
+    border-collapse: collapse; 
+}
+
+.table-div th { 
+    padding-inline: 0.5rem;
+}
+
+.table-div td {
+    display: flex;
+    align-items: center;
+}
