@@ -35,8 +35,9 @@ namespace User_API.Controllers
         [Route("/register")]
         public ActionResult InsertFromForm([FromForm] UserInputModel u)
         {
+ 
             us.Insert(UserDTO.Convert(u));
-            return Redirect("/login");
+            return Ok();
 
         }
 
